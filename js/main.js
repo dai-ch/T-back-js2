@@ -5,8 +5,6 @@ const FizzNumNode = document.getElementById('FizzNum');
 const BuzzNumNode = document.getElementById('BuzzNum');
 const btn = document.getElementById('btn')
 
-//正規表現（0以上の整数）
-const pattern = /^([1-9]\d*|0)$/;
 
 //ボタンをクリックしたらイベント発動
 btn.addEventListener('click', function () {
@@ -30,44 +28,42 @@ btn.addEventListener('click', function () {
     const ul = document.getElementById('ul')
     ul.style.paddingLeft = 0;
 
+    //if文の処理の内容を関数化、①li要素を取得、②ul要素の下にli要素を配置、③テキストを追加
+    function addText($FizzBuzz) {
+      const li = document.createElement('li');
+      ul.appendChild(li);
+      li.style.listStyle = 'none';
+      li.textContent = $FizzBuzz;
+    }
+
+    //正規表現（0以上の整数）
+    const pattern = /^([1-9]\d*|0)$/;
+
     //正規表現チェック
     if (pattern.test(FizzNum) && pattern.test(BuzzNum)) {
       for (let i = 1; i < 100; i++) {
         if (i % FizzNum === 0 && i % BuzzNum === 0) {
-          //①li要素を取得、②ul要素の下にli要素を配置、③テキストを追加
-          let li = document.createElement('li');
-          ul.appendChild(li);
-          li.style.listStyle = 'none';
-          li.textContent = `FizzBuzz ${i}`;
+          addText(`FizzBuzz ${i}`);
         } else if (i % FizzNum === 0 && i % BuzzNum !== 0) {
-          let li = document.createElement('li');
-          ul.appendChild(li);
-          li.style.listStyle = 'none';
-          li.textContent = `Fizz ${i}`;
+          addText(`Fizz ${i}`);
         } else if (i % FizzNum !== 0 && i % BuzzNum === 0) {
-          let li = document.createElement('li');
-          ul.appendChild(li);
-          li.style.listStyle = 'none';
-          li.textContent = `Buzz ${i}`;
+          addText(`Buzz ${i}`);
         }
       }
     } else {
-      console.log('整数値を入力してください')
+      console.log('ssss');
+      const li = document.createElement('li');
+      ul.appendChild(li);
+      li.style.listStyle = 'none';
+      li.textContent = `整数値を入力してください`;
     }
 
 
   } else {
-    console.log('整数値を入力してください');
+    let li = document.createElement('li');
+    ul.appendChild(li);
+    li.style.listStyle = 'none';
+    li.textContent = `整数値を入力してください`;
   }
 
-
-
-
 })
-
-
-
-
-
-
-
